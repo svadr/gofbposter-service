@@ -6,7 +6,7 @@ services:
     env_file:
       - .env
     ports:
-      - "4005:4005"
+      - "5005:5005"
     volumes:
       - .:/usr/src/app
     command: air ./cmd/main.go -b 0.0.0.0
