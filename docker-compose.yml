@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  gofbposter-service:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "4005:4005"
+    volumes:
+      - .:/usr/src/app
+    command: air ./cmd/main.go -b 0.0.0.0
