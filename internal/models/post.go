@@ -2,7 +2,6 @@ package models
 
 import (
 	"database/sql"
-	"fmt"
 
 	"github.com/brianvoe/gofakeit/v7"
 	"github.com/bxcodec/faker/v3"
@@ -38,7 +37,7 @@ func (m *PostModel) Insert(pReq CreatePostRequest) ([]FBPostData, error) {
 	// Generate the specified number of posts
 	for i := 0; i < pReq.Count; i++ {
 		id := uuid.New().String()
-		comments := generateComments()
+		comments := gofakeit.ProductDescription()
 		post := FBPostData{
 			Id:            id,
 			Author:        gofakeit.Name(),
@@ -46,7 +45,7 @@ func (m *PostModel) Insert(pReq CreatePostRequest) ([]FBPostData, error) {
 			CreatedAt:     faker.Date(),
 			ReactionCount: gofakeit.Number(1, 2000),
 			ResponseCount: gofakeit.Number(1, 2000),
-			Title:         gofakeit.Quote(),
+			Title:         gofakeit.ProductName(),
 			Views:         gofakeit.Number(1, 10000),
 			Topic:         pReq.Topic,
 			Url:           pReq.Url,
@@ -63,15 +62,4 @@ func (m *PostModel) Insert(pReq CreatePostRequest) ([]FBPostData, error) {
 	}
 
 	return posts, nil
-}
-
-func generateComments() string {
-	// Generate a random number of comments (0-15) and concatenate them into a string
-	var comments []string
-	numComments := gofakeit.Number(0, 15)
-	for i := 0; i < numComments; i++ {
-		comment := gofakeit.Sentence(3)
-		comments = append(comments, comment)
-	}
-	return fmt.Sprintf("%s", comments)
 }
