@@ -12,7 +12,7 @@ import (
 type CreatePostRequest struct {
 	Count int    `json:"count" binding:"required"`
 	Url   string `json:"url" binding:"required"`
-	Tag   string `json:"tag" binding:"required"`
+	Topic string `json:"topic" binding:"required"`
 }
 type FBPostData struct {
 	Id            string
@@ -48,7 +48,7 @@ func (m *PostModel) Insert(pReq CreatePostRequest) ([]FBPostData, error) {
 			ResponseCount: gofakeit.Number(1, 2000),
 			Title:         gofakeit.Quote(),
 			Views:         gofakeit.Number(1, 10000),
-			Topic:         pReq.Tag,
+			Topic:         pReq.Topic,
 			Url:           pReq.Url,
 		}
 		posts = append(posts, post)
