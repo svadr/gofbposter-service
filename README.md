@@ -1,6 +1,6 @@
 # gofbposter-service
 
-Go REST service using Gin & supabase for inserting posts through web scrapping with goquery.
+Go REST service using Gin & supabase for inserting fake posts using gofakeit and faker.
 
 ## Installation
 
